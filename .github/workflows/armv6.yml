@@ -1,0 +1,30 @@
+name: Build armv6
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version-file: 'go.mod'
+
+      - name: Install dependencies
+        run: go get .
+
+      - name: Build
+        run: go build -v wazero-standalone-runtime.go
+
+      - name: Upload Go test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: wazero-standalone-runtime
+          path: wazero-standalone-runtime
+
+      # - name: Test
+      #   run: go test -v ./...
