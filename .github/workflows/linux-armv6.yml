@@ -1,4 +1,4 @@
-name: Build armv6
+name: Build linux armv6
 
 on: [push]
 
@@ -18,7 +18,7 @@ jobs:
         run: go get .
 
       - name: Build
-        run: go build -v wazero-standalone-runtime.go
+        run: GOOS=linux GOARCH=arm GOARM=6 go build -v wazero-standalone-runtime.go
 
       - name: Upload Go test results
         uses: actions/upload-artifact@v3
