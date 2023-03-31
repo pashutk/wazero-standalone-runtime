@@ -30,7 +30,7 @@ func main() {
 		log.Panicln(err)
 	}
 
-	mod, err := r.InstantiateModuleFromBinary(ctx, content)
+	mod, err := r.Instantiate(ctx, content)
 	if err != nil {
 		log.Panicln(err)
 	}
